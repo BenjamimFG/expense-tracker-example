@@ -1,0 +1,5 @@
+CREATE USER expense_tracker WITH PASSWORD 'password';
+CREATE DATABASE expense_tracker_db WITH OWNER=expense_tracker;
+
+ALTER DEFAULT PRIVILEGES GRANT ALL ON TABLES TO expense_tracker;
+ALTER DEFAULT PRIVILEGES GRANT ALL ON SEQUENCES TO expense_tracker;

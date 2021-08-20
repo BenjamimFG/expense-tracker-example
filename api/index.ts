@@ -1,13 +1,24 @@
 import express from 'express';
-import { env } from 'process';
+import databaseService from './src/services/DatabaseService';
 
-const app = express();
-const port = env['APP_PORT'] || 3000;
+async function init() {
+  const app = express();
+  const port = process.env['APP_PORT'];
 
-app.get('/', (_, res) => {
-  res.json({ msg: 'Hello world!' });
-});
+  app.use(express.json());
 
-app.listen(port, () => {
-  console.log(`Server listening on port ${port}`);
-});
+  try {
+    await databaseService.connect();
+
+    console.log('Successfully connected to database.');
+
+    app.listen(port, () => {
+      console.log(`Server listening on port ${port}`);
+    });
+  } catch (err) {
+    console.error(err);
+    process.exit(1);
+  }
+}
+
+init();

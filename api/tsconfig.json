@@ -6,6 +6,7 @@
     "rootDir": "./",
     "outDir": "./build",
     "strict": true,
+    "strictPropertyInitialization": false,
     "removeComments": true
   },
   "include": ["src/**/*", "index.ts"],
