@@ -7,5 +7,5 @@ exports.up = function (knex) {
 };
 
 exports.down = function (knex) {
-  return knex.raw('TRUNCATE currency;');
+  return knex.raw('TRUNCATE currency CASCADE;');
 };
