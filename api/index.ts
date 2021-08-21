@@ -1,4 +1,5 @@
 import express from 'express';
+import authRouter from './src/routes/authRoutes';
 import databaseService from './src/services/DatabaseService';
 
 async function init() {
@@ -6,6 +7,8 @@ async function init() {
   const port = process.env['APP_PORT'];
 
   app.use(express.json());
+
+  app.use(authRouter);
 
   try {
     await databaseService.connect();
