@@ -1,12 +1,11 @@
 CREATE TABLE IF NOT EXISTS app_user (
     id                     BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     display_name           VARCHAR(100) NOT NULL,
-    email                  VARCHAR(255) NOT NULL,
+    email                  VARCHAR(255) UNIQUE NOT NULL,
     email_confirmed        BOOLEAN DEFAULT FALSE NOT NULL,
     phone                  VARCHAR(50),
     phone_confirmed        BOOLEAN DEFAULT FALSE NOT NULL,
-    password_hash          VARCHAR(255) NOT NULL,
-    password_salt          VARCHAR(255) NOT NULL
+    password_hash          VARCHAR(255) NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS currency (
