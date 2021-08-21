@@ -1,0 +1,67 @@
+FORMAT: 1A
+
+# Expense Tracker
+
+This is the API for an Expense Tracker application that allows users to track their own expenses through multiple wallets.
+
+# Group Users
+
+Resources related to the Users in the API.
+
+## User Register [/register]
+
+### Register a New User [POST]
+
+This action registers a new user. It takes a JSON object containing the user's information.
+
++ displayName (string) - The user name that will be displayed in the application
++ email (string) - The user's email that will be used for login and optional notifications
++ phone (string) - The user's phone number that will be used for optional notifications
++ password (string) - The user's password that will be used for login
+
++ Request (application/json)
+  
+        {
+            "displayName": "John Smith",
+            "email": "john.smith@mail.com",
+            "phone": "5585912345678",
+            "password": "mySecretPassword"
+        }
+
++ Response 201 (application/json)
+
+    + Body
+
+            {
+                "success": true,
+                "data": {
+                    "email": "john.smith@mail.com"
+                }
+            }
+
+## User Login [/login]
+
+### Login a User [POST]
+
+This action lets a user login into the application. It takes a JSON object containing the user's email and password.
+
++ email (string) - The user's email.
++ password (string) - The user's password.
+
++ Request (application/json)
+
+        {
+            "email": "john.smith@mail.com",
+            "password": "mySecretPassword"
+        }
+
++ Response 200 (application/json)
+    
+    + Body
+
+            {
+                "success": true,
+                "data": {
+                    "jwt": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkaXNwbGF5TmFtZSI6IkpvaG4gU21pdGgiLCJlbWFpbCI6ImpvaG4uc21pdGhAbWFpbC5jb20iLCJleHAiOjE1MTYyMzkwMjIsInBob25lIjoiNTU4NTkxMjM0NTY3OCJ9.wiNGzwGy6uFKhfslLcdGpdRVsc64F-cmCWdk3QlxvUY"
+                }
+            }
