@@ -113,6 +113,37 @@ This action marks an user account for deletion requiring delete confirmation via
                 "success": true
             }
 
+# Group Currencies
+
+## Currencies [/currencies]
+
+### Get All Currencies [GET]
+
+This action returns all categories available.
+
+This action returns all user wallets.
+
++ Request (application/json)
+    
+    + Headers
+        
+            Authorization: Bearer {user_jwt}
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "success": true,
+                "data": [
+                    { "code": "USD", "symbol": "$", "decimalDigits": 2 },
+                    { "code": "CAD", "symbol": "$", "decimalDigits": 2 },
+                    { "code": "BRL", "symbol": "R$", "decimalDigits": 2 },
+                    ...
+                ]
+            }
+
+
 # Group Wallets
 
 ## User Wallets [/wallet]
