@@ -24,7 +24,7 @@ This action registers a new user. It takes a JSON object containing the user's i
         {
             "displayName": "John Smith",
             "email": "john.smith@mail.com",
-            "phone": "5585912345678",
+            "phone": "+5511912345678",
             "password": "mySecretPassword"
         }
 
@@ -62,6 +62,191 @@ This action lets a user login into the application. It takes a JSON object conta
             {
                 "success": true,
                 "data": {
-                    "jwt": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkaXNwbGF5TmFtZSI6IkpvaG4gU21pdGgiLCJlbWFpbCI6ImpvaG4uc21pdGhAbWFpbC5jb20iLCJleHAiOjE1MTYyMzkwMjIsInBob25lIjoiNTU4NTkxMjM0NTY3OCJ9.wiNGzwGy6uFKhfslLcdGpdRVsc64F-cmCWdk3QlxvUY"
+                    "jwt": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MCwiZGlzcGxheU5hbWUiOiJKb2huIFNtaXRoIiwiZW1haWwiOiJqb2huLnNtaXRoQG1haWwuY29tIiwicGhvbmUiOiIrNTUxMTkxMjM0NTY3OCIsImlhdCI6MTUxNjIzOTAyMn0.rn20ARVCpohOt835Y3LRZC2gq9UDlqFmvVKrmNjsJJs"
                 }
+            }
+
+## User Account [/account]
+
+### Delete a User Account [DELETE]
+
+This action marks an user account for deletion requiring delete confirmation via email.
+
++ Request (application/json)
+    
+    + Headers
+        
+            Authorization: Bearer {user_jwt}
+
++ Response 202 (application/json)
+
+    + Body
+
+            {
+                "success": true
+            }
+
+# Group Wallets
+
+## User Wallets [/wallet]
+
+### Get All User Wallets [GET]
+
+This action returns all user wallets.
+
++ Request (application/json)
+    
+    + Headers
+        
+            Authorization: Bearer {user_jwt}
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "success": true,
+                "data": [
+                    { 
+                        "id": 0,
+                        "name": "Personal Wallet",
+                        "description": "Wallet for my personal expenses",
+                        "funds": 100000,
+                        "currencyCode": "USD",
+                        "decimalDigits": 2
+                    },
+                    { 
+                        "id": 1,
+                        "name": "Savings",
+                        "description": "Wallet for savings",
+                        "funds": 2500000,
+                        "currencyCode": "USD",
+                        "decimalDigits": 2
+                    }
+                ]
+            }
+
+### Create New Wallet [POST]
+
+This action creates a new user wallet.
+
++ name (string) The wallet's name.
++ description (string) The wallet's description.
++ currencyCode (string) The currency code to be used for the wallet's funds.
++ startingFunds (number) The starting funds of the wallet.
+
++ Request (application/json)
+    
+    + Headers
+        
+            Authorization: Bearer {user_jwt}
+    
+    + Body
+
+            {
+                "name": "Wallet's Name",
+                "description": "Wallet's Description",
+                "currencyCode": "CAD",
+                "startingFunds": 0
+            }
+
++ Response 201 (application/json)
+
+    + Body
+
+            {
+                "success": true,
+                "data": {
+                    "id": 3,
+                    "name": "Wallet's Name",
+                    "description": "Wallet's Description",
+                    "funds": 0,
+                    "currencyCode": "CAD",
+                    "decimalDigits": 2
+                }
+            }
+
+## User Specific Wallet [/wallet/{wallet_id}]
+
++ Parameters
+    + wallet_id: 3 (required, number) - ID of the wallet to perform the action on.
+
+### Get Single User Wallet [GET]
+
+This action returns a single user wallet
+
++ Request (application/json)
+    
+    + Headers
+        
+            Authorization: Bearer {user_jwt}
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "success": true,
+                "data": {
+                    "id": 3,
+                    "name": "Wallet's Name",
+                    "description": "Wallet's Description",
+                    "funds": 0,
+                    "currencyCode": "CAD",
+                    "decimalDigits": 2
+                }
+            }
+
+### Update Wallet Information [PUT]
+
+This actions let's the user change the name or description of a wallet.
+
++ modifiedField (string) Name of the wallet field to be updated (name or description).
++ newValue (string) Updated value of the modified field.
+
++ Request (application/json)
+    
+    + Headers
+        
+            Authorization: Bearer {user_jwt}
+    
+    + Body
+
+            {
+                "modifiedField": "name",
+                "newValue": "Updated Wallet Name"
+            }
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "success": true,
+                "data": {
+                    "id": 3,
+                    "name": "Updated Wallet Name",
+                    "description": "Wallet's Description",
+                    "funds": 0,
+                    "currencyCode": "CAD",
+                    "decimalDigits": 2
+                }
+            }
+
+### Delete Wallet [DELETE]
+
+This action let's the user delete a wallet and all related information.
+
++ Request (application/json)
+    
+    + Headers
+        
+            Authorization: Bearer {user_jwt}
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "success": true
             }
