@@ -68,6 +68,33 @@ This action lets a user login into the application. It takes a JSON object conta
 
 ## User Account [/account]
 
+### Update User Account Information [PUT]
+
+This action let's the user update their information (displayed name, email, phone number)
+
++ displayName (string) - The user name that will be displayed in the application
++ email (string) - The user's email that will be used for login and optional notifications
++ phone (string) - The user's phone number that will be used for optional notifications
+
++ Request (application/json)
+  
+        {
+            "displayName": "John Smith New Display Name",
+            "email": "john.smith@mail.com",
+            "phone": "+5511912345678"
+        }
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "success": true,
+                "data": {
+                    "jwt": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MCwiZGlzcGxheU5hbWUiOiJKb2huIFNtaXRoIiwiZW1haWwiOiJqb2huLnNtaXRoQG1haWwuY29tIiwicGhvbmUiOiIrNTUxMTkxMjM0NTY3OCIsImlhdCI6MTUxNjIzOTAyMn0.rn20ARVCpohOt835Y3LRZC2gq9UDlqFmvVKrmNjsJJs"
+                }
+            }
+
 ### Delete a User Account [DELETE]
 
 This action marks an user account for deletion requiring delete confirmation via email.
@@ -201,8 +228,8 @@ This action returns a single user wallet
 
 This actions let's the user change the name or description of a wallet.
 
-+ modifiedField (string) Name of the wallet field to be updated (name or description).
-+ newValue (string) Updated value of the modified field.
++ name (string) The wallet's name.
++ description (string) The wallet's description.
 
 + Request (application/json)
     
@@ -213,8 +240,8 @@ This actions let's the user change the name or description of a wallet.
     + Body
 
             {
-                "modifiedField": "name",
-                "newValue": "Updated Wallet Name"
+                "name": "Wallet's Name",
+                "description": "Wallet's Description"
             }
 
 + Response 200 (application/json)
@@ -350,8 +377,8 @@ This action returns a single user's expense category
 
 This actions let's the user change the name or description of a category.
 
-+ modifiedField (string) Name of the category field to be updated (name or description).
-+ newValue (string) Updated value of the modified field.
++ name (string) The category's name.
++ description (string) The category's description.
 
 + Request (application/json)
     
@@ -362,8 +389,8 @@ This actions let's the user change the name or description of a category.
     + Body
 
             {
-                "modifiedField": "name",
-                "newValue": "Updated Category Name"
+                "name": "Updated Category Name",
+                "description": "Expenses related to fuel for my car"
             }
 
 + Response 200 (application/json)
