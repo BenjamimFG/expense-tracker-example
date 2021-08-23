@@ -250,3 +250,149 @@ This action let's the user delete a wallet and all related information.
             {
                 "success": true
             }
+
+# Group Categories
+
+## Expense Categories [/categories]
+
+### Get All User's Categories [GET]
+
+This action returns all user's expense categories.
+
++ Request (application/json)
+    
+    + Headers
+        
+            Authorization: Bearer {user_jwt}
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "success": true,
+                "data": [
+                    { 
+                        "id": 0,
+                        "name": "Food",
+                        "description": "Category for all Food related transactions"
+                    },
+                    { 
+                        "id": 1,
+                        "name": "Rent",
+                        "description": "Category for all rent payments"
+                    }
+                ]
+            }
+
+### Create New Category [POST]
+
+This action creates a new expense category for the user.
+
++ name (string) The category's name.
++ description (string) The category's description.
+
++ Request (application/json)
+    
+    + Headers
+        
+            Authorization: Bearer {user_jwt}
+    
+    + Body
+
+            {
+                "name": "Gas",
+                "description": "Expenses related to fuel for my car"
+            }
+
++ Response 201 (application/json)
+
+    + Body
+
+            {
+                "success": true,
+                "data": {
+                    "id": 2,
+                    "name": "Gas",
+                    "description": "Expenses related to fuel for my car"
+                }
+            }
+
+## Specific Expense Category [/categories/{category_id}]
+
++ Parameters
+    + category_id: 2 (required, number) - ID of the category to perform the action on.
+
+### Get Single Expense Category [GET]
+
+This action returns a single user's expense category
+
++ Request (application/json)
+    
+    + Headers
+        
+            Authorization: Bearer {user_jwt}
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "success": true,
+                "data": {
+                    "id": 2,
+                    "name": "Gas",
+                    "description": "Expenses related to fuel for my car"
+                }
+            }
+
+### Update Category Information [PUT]
+
+This actions let's the user change the name or description of a category.
+
++ modifiedField (string) Name of the category field to be updated (name or description).
++ newValue (string) Updated value of the modified field.
+
++ Request (application/json)
+    
+    + Headers
+        
+            Authorization: Bearer {user_jwt}
+    
+    + Body
+
+            {
+                "modifiedField": "name",
+                "newValue": "Updated Category Name"
+            }
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "success": true,
+                "data": {
+                    "id": 2,
+                    "name": "Updated Category Name",
+                    "description": "Expenses related to fuel for my car"
+                }
+            }
+
+### Delete Category [DELETE]
+
+This action let's the user delete a category and all related information.
+
++ Request (application/json)
+    
+    + Headers
+        
+            Authorization: Bearer {user_jwt}
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "success": true
+            }
