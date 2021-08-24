@@ -383,7 +383,7 @@ This action creates a new expense category for the user.
 
 ### Get Single Expense Category [GET]
 
-This action returns a single user's expense category
+This action returns a single user's expense category.
 
 + Request (application/json)
     
@@ -440,6 +440,143 @@ This actions let's the user change the name or description of a category.
 ### Delete Category [DELETE]
 
 This action let's the user delete a category and all related information.
+
++ Request (application/json)
+    
+    + Headers
+        
+            Authorization: Bearer {user_jwt}
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "success": true
+            }
+
+# Group Tags
+
+## Expense Tags [/tags]
+
+### Get All User's Tags [GET]
+
+This action returns all user's expense tags. Tags differ from categories because expenses can have multiple tags and only a single category, also tags are optional while category is required for an expense.
+
++ Request (application/json)
+    
+    + Headers
+        
+            Authorization: Bearer {user_jwt}
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "success": true,
+                "data": [
+                    { 
+                        "id": 0,
+                        "name": "Friend's Payment"
+                    },
+                    { 
+                        "id": 1,
+                        "name": "Check Later"
+                    }
+                ]
+            }
+
+### Create New Tag [POST]
+
+This action creates a new expense tag for the user.
+
++ name (string) The tag's name.
+
++ Request (application/json)
+    
+    + Headers
+        
+            Authorization: Bearer {user_jwt}
+    
+    + Body
+
+            {
+                "name": "Cash Payment"
+            }
+
++ Response 201 (application/json)
+
+    + Body
+
+            {
+                "success": true,
+                "data": {
+                    "id": 2,
+                    "name": "Cash Payment"
+                }
+            }
+
+## Specific Expense Tag [/tags/{tag_id}]
+
++ Parameters
+    + tag_id: 2 (required, number) - ID of the tag to perform the action on.
+
+### Get Single Expense Tag [GET]
+
+This action returns a single user's expense tag.
+
++ Request (application/json)
+    
+    + Headers
+        
+            Authorization: Bearer {user_jwt}
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "success": true,
+                "data": {
+                    "id": 2,
+                    "name": "Cash Payment"
+                }
+            }
+
+### Update Tag Information [PUT]
+
+This actions let's the user change the name of a tag.
+
++ name (string) The tag's name.
+
++ Request (application/json)
+    
+    + Headers
+        
+            Authorization: Bearer {user_jwt}
+    
+    + Body
+
+            {
+                "name": "Updated Tag Name",
+            }
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "success": true,
+                "data": {
+                    "id": 2,
+                    "name": "Updated Tag Name"
+                }
+            }
+
+### Delete Tag [DELETE]
+
+This action let's the user delete a tag.
 
 + Request (application/json)
     
