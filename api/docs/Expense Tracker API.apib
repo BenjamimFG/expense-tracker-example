@@ -644,3 +644,198 @@ This action let's the user delete a tag.
             {
                 "success": true
             }
+
+# Group Alerts
+
+## User Alerts [/alerts]
+
+### Get All User Alerts [GET]
+
+This action returns all the user's alerts.
+
++ Request (application/json)
+    
+    + Headers
+        
+            Authorization: Bearer {user_jwt}
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "success": true,
+                "data": [
+                    {
+                        "id": 0,
+                        "alertType": "FUNDS",
+                        "alertValue": 50000,
+                        "alertMethod": "11",
+                        "walletNome": "Personal Wallet"
+                    },
+                    {
+                        "id": 1,
+                        "alertType": "FUNDS",
+                        "alertValue": 100000,
+                        "alertMethod": "11"
+                    },
+                    {
+                        "id": 2,
+                        "alertType": "TRANSACTIONS",
+                        "alertValue": 75000,
+                        "alertMethod": "11",
+                        "walletNome": "Savings",
+                        "timePeriod": "YEAR"
+                    },
+                    {
+                        "id": 3,
+                        "alertType": "TRANSACTIONS",
+                        "alertValue": 200000,
+                        "alertMethod": "11",
+                        "timePeriod": "MONTH"
+                    }
+                ]
+            }
+
+### Create New User Alert [POST]
+
+This action creates a new user alert.
+
++ alertType (string) - Type of alert, possible values are:
+    + "FUNDS": Alerts when funds reach alertValue
+    + "TRANSACTIONS": Alerts when transaction value reach alertValue
++ alertValue (number) - Threshold value to alert the user
++ alertMethod (string) - Binary string of alert method, possible values are: (or any logical OR between the values)
+    + "10": Email alert
+    + "01": Phone alert
++ timePeriod (string) - Only used when alertType is "TRANSACTIONS", time period to sum transactions value to alert, possible values are:
+    + "DAY"
+    + "WEEK"
+    + "MONTH"
+    + "YEAR"
++ walletId (number) - Id of the wallet to check funds or transactions. If missing will check all wallets.
+
++ Request (application/json)
+    
+    + Headers
+        
+            Authorization: Bearer {user_jwt}
+
+    + Body
+
+            {
+                "alertType": "TRANSACTIONS",
+                "alertValue": 200000,
+                "alertMethod": "11",
+                "timePeriod": "MONTH",
+                "walletId": 0
+            }
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "success": true,
+                "data": {
+                    "id": 4,
+                    "alertType": "TRANSACTIONS",
+                    "alertValue": 200000,
+                    "alertMethod": "11",
+                    "timePeriod": "MONTH",
+                    "walletId": 0
+                }
+            }
+
+## User Specific Alert [/alerts/{alert_id}]
+
++ Parameters
+    + alert_id: 2 (required, number) - ID of the tag to perform the action on.
+
+### Get Single User Alert [GET]
+
+This action returns a specific user alert.
+
++ Request (application/json)
+    
+    + Headers
+        
+            Authorization: Bearer {user_jwt}
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "success": true,
+                "data": {
+                    "id": 2,
+                    "alertType": "TRANSACTIONS",
+                    "alertValue": 75000,
+                    "alertMethod": "11",
+                    "walletNome": "Savings",
+                    "timePeriod": "YEAR"
+                }
+            }
+
+### Update User Alert [PUT]
+
+This action let's the user update an alert.
+
++ alertValue (number) - Threshold value to alert the user
++ alertMethod (string) - Binary string of alert method, possible values are: (or any logical OR between the values)
+    + "10": Email alert
+    + "01": Phone alert
++ timePeriod (string) - Only used when alertType is "TRANSACTIONS", time period to sum transactions value to alert, possible values are:
+    + "DAY"
+    + "WEEK"
+    + "MONTH"
+    + "YEAR"
+
++ Request (application/json)
+    
+    + Headers
+        
+            Authorization: Bearer {user_jwt}
+
+    + Body
+
+            {
+                "alertValue": 80000,
+                "alertMethod": "10",
+                "timePeriod": "YEAR"
+            }
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "success": true,
+                "data": {
+                    "id": 2,
+                    "alertType": "TRANSACTIONS",
+                    "alertValue": 80000,
+                    "alertMethod": "10",
+                    "walletNome": "Savings",
+                    "timePeriod": "YEAR"
+                }
+            }
+
+### Delete User Alert [DELETE]
+
+This action let's the user delete an alert.
+
++ Request (application/json)
+    
+    + Headers
+        
+            Authorization: Bearer {user_jwt}
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "success": true
+            }
