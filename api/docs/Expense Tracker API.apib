@@ -4,9 +4,9 @@ FORMAT: 1A
 
 This is the API for an Expense Tracker application that allows users to track their own expenses through multiple wallets.
 
-# Group Users
+# Group Auth
 
-Resources related to the Users in the API.
+Resources related to the authentication in the API.
 
 ## User Register [/register]
 
@@ -18,6 +18,7 @@ This action registers a new user. It takes a JSON object containing the user's i
 + email (string) - The user's email that will be used for login and optional notifications
 + phone (string) - The user's phone number that will be used for optional notifications
 + password (string) - The user's password that will be used for login
++ totalFundsCurrencyCode (string) - The Code of the currency used to display user's total funds
 
 + Request (application/json)
   
@@ -25,7 +26,8 @@ This action registers a new user. It takes a JSON object containing the user's i
             "displayName": "John Smith",
             "email": "john.smith@mail.com",
             "phone": "+5511912345678",
-            "password": "mySecretPassword"
+            "password": "mySecretPassword",
+            "totalFundsCurrencyCode": "USD"
         }
 
 + Response 201 (application/json)
@@ -66,11 +68,13 @@ This action lets a user login into the application. It takes a JSON object conta
                 }
             }
 
+# Group User Account
+
 ## User Account [/account]
 
 ### Update User Account Information [PUT]
 
-This action let's the user update their information (displayed name, email, phone number)
+This action let's the user update their information (displayed name, email, phone number, total funds currency code).
 
 + displayName (string) - The user name that will be displayed in the application
 + email (string) - The user's email that will be used for login and optional notifications
@@ -81,7 +85,8 @@ This action let's the user update their information (displayed name, email, phon
         {
             "displayName": "John Smith New Display Name",
             "email": "john.smith@mail.com",
-            "phone": "+5511912345678"
+            "phone": "+5511912345678",
+            "totalFundsCurrencyCode": "USD"
         }
 
 + Response 200 (application/json)
@@ -106,6 +111,54 @@ This action marks an user account for deletion requiring delete confirmation via
             Authorization: Bearer {user_jwt}
 
 + Response 202 (application/json)
+
+    + Body
+
+            {
+                "success": true
+            }
+
+
+## User Password [/account/password]
+
+### Reset Forgotten Password [POST]
+
+This action let's a user who forgot their password reset it via email.
+
++ userEmail (string) - The email of the user that forgot password
+
++ Request (application/json)
+
+        {
+            "userEmail": "john.smith@mail.com"
+        }
+
++ Response 202 (application/json)
+
+    + Body
+
+            {
+                "success": true,
+                "data": {
+                    "userEmail": "john.smith@mail.com"
+                }
+            }
+
+### Change User Password [PATCH]
+
+This action let's a logged in user change their current password.
+
++ oldPassword (string) - User's old password
++ newPassword (string) - User's new password
+
++ Request (application/json)
+  
+        {
+            "oldPassword": "mySecretPassword",
+            "newPassword": "myUpdatedPassword"
+        }
+
++ Response 200 (application/json)
 
     + Body
 
