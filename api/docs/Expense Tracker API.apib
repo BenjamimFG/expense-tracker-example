@@ -839,3 +839,204 @@ This action let's the user delete an alert.
             {
                 "success": true
             }
+
+# Group Transactions
+
+## User Transactions [/transactions]
+
+### Get User Transactions [GET]
+
+This actions let's the user get all their transactions.
+
++ Request (application/json)
+    
+    + Headers
+        
+            Authorization: Bearer {user_jwt}
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "success": true,
+                "data": [
+                    {
+                        "id": 0,
+                        "value": -10000,
+                        "description": "New Keyboard",
+                        "timestamp": "1629947272",
+                        "category": 1,
+                        "tags": [
+                            2
+                        ],
+                        "walletId": 0
+                    }
+                ]
+            }
+
+### Create New Transaction [POST]
+
+This action let's the user create a new transaction.
+
++ value (number) - Value of the transaction
++ description (string) - Description of the transaction
++ reason (string) - Reason of the transaction
++ timestamp (string) - Timestamp of the transaction, if empty the timestamp is set on server to now
++ locationName (string) - Name of the location of the transaction
++ locationLatLng (latlng) - Latitude and Longitude of the transaction
++ categoryId (number) - Id of the category of the transaction
++ walletId (number) - Id of the wallet used for the transaction
++ tags (number[]) - Array of tag ids for this transaction
+
++ Request (application/json)
+    
+    + Headers
+        
+            Authorization: Bearer {user_jwt}
+
+    + Body
+            
+            {
+                "value": -4000,
+                "description": "Pizza treat",
+                "reason": "Reward for acing the test",
+                "timestamp": "1629947272",
+                "locationName": "Pizza Restaurant",
+                "locationLatLng": { "lat": -12.3221, "lng": 12.3221 },
+                "categoryId": 2,
+                "walletId": 1,
+                "tags": [0, 1]
+            }
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "success": true,
+                "data": {
+                    "id": 1,
+                    "value": -4000,
+                    "description": "Pizza treat",
+                    "expenseTimestamp": "1629947272",
+                    "categoryId": 2,
+                    "locationName": "Pizza Restaurant",
+                    "locationLatLng": { "lat": -12.3221, "lng": 12.3221 },
+                    "tags": [
+                        0,
+                        1
+                    ],
+                    "walletId": 1
+                }
+            }
+
+## Specific User Transaction [/transactions/{transaction_id}]
+
++ Parameters
+    + transaction_id: 1 (required, number) - ID of the transaction to perform the action on.
+
+### Get Single Transaction [GET]
+
+This action returns a single transaction.
+
++ Request (application/json)
+    
+    + Headers
+        
+            Authorization: Bearer {user_jwt}
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "success": true,
+                "data": {
+                    "id": 1,
+                    "value": -4000,
+                    "description": "Pizza treat",
+                    "expenseTimestamp": "1629947272",
+                    "category": "Food",
+                    "locationName": "Pizza Restaurant",
+                    "locationLatLng": { "lat": -12.3221, "lng": 12.3221 },
+                    "tags": [
+                        "Treat",
+                        "Fast Food"
+                    ],
+                    "walletName": "Treats Savings"
+                }
+            }
+
+### Update Transaction [PUT]
+
+This action lets the user update a transaction.
+
++ value (number) - Value of the transaction
++ description (string) - Description of the transaction
++ reason (string) - Reason of the transaction
++ timestamp (string) - Timestamp of the transaction, if empty the timestamp is set on server to now
++ locationName (string) - Name of the location of the transaction
++ locationLatLng (latlng) - Latitude and Longitude of the transaction
++ categoryId (number) - Id of the category of the transaction
++ walletId (number) - Id of the wallet used for the transaction
++ tags (number[]) - Array of tag ids for this transaction
+
++ Request (application/json)
+    
+    + Headers
+        
+            Authorization: Bearer {user_jwt}
+
+    + Body
+            
+            {
+                "value": -4000,
+                "description": "Pizza treat",
+                "reason": "Reward for acing the test",
+                "timestamp": "1629947272",
+                "locationName": "New Pizza Restaurant",
+                "locationLatLng": { "lat": -12.3221, "lng": 12.3221 },
+                "categoryId": 2,
+                "walletId": 1,
+                "tags": [0]
+            }
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "success": true,
+                "data": {
+                    "id": 1,
+                    "value": -4000,
+                    "description": "Pizza treat",
+                    "expenseTimestamp": "1629947272",
+                    "categoryId": 2,
+                    "locationName": "New Pizza Restaurant",
+                    "locationLatLng": { "lat": -12.3221, "lng": 12.3221 },
+                    "tags": [
+                        0
+                    ],
+                    "walletId": 1
+                }
+            }
+
+### Delete Transaction [DELETE]
+
+This action deletes a transaction.
+
++ Request (application/json)
+    
+    + Headers
+        
+            Authorization: Bearer {user_jwt}
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "success": true
+            }
