@@ -8,14 +8,14 @@ exports.up = function (knex) {
 
 exports.down = function (knex) {
   return knex.raw(`
-    DROP TABLE app_user;
-    DROP TABLE currency;
-    DROP TABLE wallet;
-    DROP TABLE user_alert_transactions;
-    DROP TABLE user_alert_funds;
-    DROP TABLE category;
-    DROP TABLE tag;
-    DROP TABLE app_transaction;
     DROP TABLE transaction_tags;
+    DROP TABLE app_transaction;
+    DROP TABLE tag;
+    DROP TABLE category;
+    DROP TABLE user_alert_funds;
+    DROP TABLE user_alert_transactions;
+    DROP TABLE wallet;
+    DROP TABLE currency;
+    DROP TABLE app_user;
   `);
 };
