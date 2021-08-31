@@ -1,3 +1,10 @@
+CREATE TABLE IF NOT EXISTS currency (
+    code                   CHAR(3) PRIMARY KEY,
+    symbol                 VARCHAR(10),
+    decimal_digits         INT NOT NULL,
+    country_flag           CHAR(4) NOT NULL
+);
+
 CREATE TABLE IF NOT EXISTS app_user (
     id                     BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     display_name           VARCHAR(100) NOT NULL,
@@ -5,13 +12,8 @@ CREATE TABLE IF NOT EXISTS app_user (
     email_confirmed        BOOLEAN DEFAULT FALSE NOT NULL,
     phone                  VARCHAR(50),
     phone_confirmed        BOOLEAN DEFAULT FALSE NOT NULL,
-    password_hash          VARCHAR(255) NOT NULL
-);
-
-CREATE TABLE IF NOT EXISTS currency (
-    code                   CHAR(3) PRIMARY KEY,
-    symbol                 VARCHAR(10),
-    decimal_digits         INT NOT NULL
+    password_hash          VARCHAR(255) NOT NULL,
+    default_currency_code  CHAR(3) REFERENCES currency(code) NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS wallet (

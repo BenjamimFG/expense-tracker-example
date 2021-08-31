@@ -1,7 +1,6 @@
-type ErrorCode = 'EMAIL_ALREADY_REGISTERED' | 'INTERNAL_SERVER_ERROR';
+import Error from './Error';
 
 export default interface JsonResponse {
-  success: boolean;
   data?: any;
-  error?: ErrorCode;
+  error?: Error;
 }

@@ -8,7 +8,7 @@ async function init() {
 
   app.use(express.json());
 
-  app.use(authRouter);
+  app.use('/auth', authRouter);
 
   try {
     await databaseService.connect();
