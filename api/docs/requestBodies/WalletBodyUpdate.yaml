@@ -1,0 +1,18 @@
+content:
+  application/json:
+    schema:
+      type: object
+      required:
+        - name
+        - description
+        - currencyCode
+      properties:
+        name:
+          type: string
+          example: My Wallet
+        description:
+          type: string
+          example: My main wallet
+        currencyCode:
+          type: string
+          example: USD

@@ -1,0 +1,26 @@
+post:
+  description: Register a new user
+  requestBody:
+    $ref: '#components/requestBodies/UserBody'
+  responses:
+    201:
+      description: User Registered Succesfully
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              email:
+                type: string
+                example: john.smith@mail.com
+                description: Email of the registered user
+    409:
+      description: Email already registered
+      content:
+        application/json:
+          schema:
+            $ref: '#components/schemas/Error'
+    422:
+      $ref: '#components/schemas/422'
+  tags:
+    - "Auth"

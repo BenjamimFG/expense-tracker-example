@@ -1,0 +1,54 @@
+get:
+  description: This action returns a single user's alert.
+  parameters:
+    - $ref: '#components/parameters/resource_id'
+    - $ref: '#components/parameters/authorization'
+  responses:
+    200:
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: '#components/schemas/Alert'
+    401:
+      $ref: '#components/schemas/401'
+  security:
+    - JWT: []
+  tags:
+    - Alerts
+put:
+  description: This actions let's the user update an alert.
+  parameters:
+    - $ref: '#components/parameters/resource_id'
+    - $ref: '#components/parameters/authorization'
+  requestBody:
+    $ref: '#components/requestBodies/AlertBodyUpdate'
+  responses:
+    200:
+      description: Alert updated successfully
+      content:
+        application/json:
+          schema:
+            $ref: '#components/schemas/Alert'
+    401:
+      $ref: '#components/schemas/401'
+    422:
+      $ref: '#components/schemas/422'
+  security:
+    - JWT: []
+  tags:
+    - Alerts
+delete:
+  description: This action let's the user delete an alert.
+  parameters:
+    - $ref: '#components/parameters/resource_id'
+    - $ref: '#components/parameters/authorization'
+  responses:
+    200:
+      description: Tag deleted successfully
+    401:
+      $ref: '#components/schemas/401'
+  security:
+    - JWT: []
+  tags:
+    - Alerts

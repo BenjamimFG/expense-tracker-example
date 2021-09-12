@@ -1,0 +1,22 @@
+content:
+  application/json:
+    schema:
+      type: object
+      required:
+        - name
+        - description
+        - currencyCode
+      properties:
+        name:
+          type: string
+          example: My Wallet
+        description:
+          type: string
+          example: My main wallet
+        currencyCode:
+          type: string
+          example: USD
+        startingFunds:
+          type: integer
+          example: 10000
+          description: The currency's decimal digits will be added to the integer, for example 10000 will become 100.00 for 2 decimal digits currencies such as USD.

@@ -1,0 +1,22 @@
+get:
+  description: Get all currencies
+  parameters:
+    - $ref: '#components/parameters/authorization'
+  responses:
+    200:
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: array
+            description: Array of available currency codes
+            example:
+              - BRL
+              - USD
+              - CAD
+    401:
+      $ref: '#components/schemas/401'
+  security:
+    - JWT: []
+  tags:
+    - "Currencies"

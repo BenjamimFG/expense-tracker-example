@@ -1,0 +1,99 @@
+get:
+  description: This action returns a single user wallet
+  parameters:
+    - $ref: '#components/parameters/resource_id'
+    - $ref: '#components/parameters/authorization'
+  responses:
+    200:
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: object
+            required:
+              - id
+              - name
+              - currencyCode
+              - decimalDigits
+              - funds
+            properties:
+              id: 
+                type: integer
+                example: 3
+              name: 
+                type: string
+                example: Wallet's Name
+              description: 
+                type: string
+                example: Wallet's Description
+              currencyCode: 
+                type: string
+                example: CAD
+              decimalDigits: 
+                type: integer
+                example: 2
+              funds: 
+                type: integer
+                example: 0
+    401:
+      $ref: '#components/schemas/401'
+  security:
+    - JWT: []
+  tags:
+    - Wallets
+put:
+  description: This actions let's the user change the name or description of a wallet.
+  parameters:
+    - $ref: '#components/parameters/resource_id'
+    - $ref: '#components/parameters/authorization'
+  requestBody:
+    $ref: '#components/requestBodies/WalletBodyUpdate'
+  responses:
+    200:
+      description: Wallet updated successfully
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              id:
+                type: integer
+                example: 3
+              name:
+                type: string
+                example: Updated Wallet Name
+              description:
+                type: string
+                example: Wallet's Description
+              currencyCode:
+                type: string
+                example: CAD
+              decimalDigits:
+                type: integer
+                example: 2
+              funds:
+                type: integer
+                example: 0
+    401:
+      $ref: '#components/schemas/401'
+    422:
+      $ref: '#components/schemas/422'
+  security:
+    - JWT: []
+  tags:
+    - Wallets
+delete:
+  description: This action let's the user delete a wallet and all related information.
+  parameters:
+    - $ref: '#components/parameters/resource_id'
+    - $ref: '#components/parameters/authorization'
+  responses:
+    200:
+      description: Wallet deleted successfully
+    401:
+      $ref: '#components/schemas/401'
+  security:
+    - JWT: []
+  tags:
+    - Wallets
+

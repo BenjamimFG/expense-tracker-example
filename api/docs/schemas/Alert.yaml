@@ -1,0 +1,45 @@
+type: object
+required:
+  - id
+  - alertMethod
+  - alertType
+  - alertValue
+properties:
+  id:
+    type: integer
+    example: 0
+  alertMethod:
+    type: string
+    example: '11'
+  alertType:
+    type: string
+    example: FUNDS
+  alertValue:
+    type: integer
+    example: 50000
+  wallet:
+    type: object
+    properties:
+      id:
+        type: integer
+        example: 0
+      name:
+        type: string
+        example: My Wallet
+      currencyCode:
+        type: string
+        example: USD
+      decimalDigits:
+        type: integer
+        example: 2
+  timePeriod:
+    type: string
+  timePeriodMultiplier:
+    type: integer
+  category:
+    type: object
+    properties:
+      id:
+        type: integer
+      name:
+        type: string

@@ -1,0 +1,29 @@
+content:
+  application/json:
+    schema:
+      type: object
+      required:
+        - displayName
+        - password
+        - email
+        - defaultCurrencyCode
+      properties:
+        displayName:
+          type: string
+          example: John Smith
+          minLength: 2
+          maxLength: 100
+        password:
+          type: string
+          example: mySecretPassword
+          minLength: 8
+          maxLength: 72
+        email:
+          type: string
+          example: john.smith@mail.com
+        phone:
+          type: string
+          example: '+5512345678'
+        defaultCurrencyCode:
+          type: string
+          example: USD

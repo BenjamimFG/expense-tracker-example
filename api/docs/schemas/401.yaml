@@ -1,0 +1,15 @@
+description: User not authenticated
+content:
+  application/json:
+    schema:
+      type: object
+      properties:
+        error:
+          type: object
+          required:
+            - type
+          properties:
+            type:
+              type: string
+              description: Type of the error
+              example: NOT_AUTHENTICATED

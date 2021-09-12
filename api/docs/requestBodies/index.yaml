@@ -1,0 +1,18 @@
+UserBody:
+  $ref: './UserBody.yaml'
+UserBodyUpdate:
+  $ref: './UserBodyUpdate.yaml'
+WalletBody:
+  $ref: './WalletBody.yaml'
+WalletBodyUpdate:
+  $ref: './WalletBodyUpdate.yaml'
+CategoryBody:
+  $ref: './CategoryBody.yaml'
+TagBody:
+  $ref: './TagBody.yaml'
+AlertBody:
+  $ref: './AlertBody.yaml'
+AlertBodyUpdate:
+  $ref: './AlertBodyUpdate.yaml'
+TransactionBody:
+  $ref: './TransactionBody.yaml'

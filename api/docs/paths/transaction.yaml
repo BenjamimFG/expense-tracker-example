@@ -1,0 +1,150 @@
+get:
+  description: This action returns a single user transaction.
+  parameters:
+    - $ref: '#components/parameters/resource_id'
+    - $ref: '#components/parameters/authorization'
+  responses:
+    200:
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: object
+            required:
+              - id
+              - value
+              - walletId
+              - timestamp
+            properties:
+              id:
+                type: integer
+                description: Id of the transaction
+                example: 0
+              value:
+                type: integer
+                description: Value of the transaction without the decimal places
+                example: 1000
+              description:
+                type: string
+                description: Description of the transaction
+              reason:
+                type: string
+                description: Optional reason of the transaction
+              timestamp:
+                type: string
+                description: Timestamp of the transaction, defaults to now()
+                example: '2021-09-12 02:43:29'
+              locationName:
+                type: string
+                description: Name of the store/location/vendor of the transaction
+              location:
+                type: object
+                properties:
+                  lat:
+                    type: number
+                    description: Latitude of the location
+                    example: -12.234
+                  lng:
+                    type: number
+                    description: Longitude of the location
+                    example: 14.456
+              categoryId:
+                type: integer
+                description: Id of the category
+              walletId:
+                type: integer
+                description: Id of the wallet
+              tagIds:
+                type: array
+                description: Array of tag ids
+                example: [0, 1, 2]
+    401:
+      $ref: '#components/schemas/401'
+  security:
+    - JWT: []
+  tags:
+    - Transactions
+put:
+  description: This actions let's the user update a transaction.
+  parameters:
+    - $ref: '#components/parameters/resource_id'
+    - $ref: '#components/parameters/authorization'
+  requestBody:
+    $ref: '#components/requestBodies/TransactionBody'
+  responses:
+    200:
+      description: Wallet updated successfully
+      content:
+        application/json:
+          schema:
+            type: object
+            required:
+              - id
+              - value
+              - walletId
+              - timestamp
+            properties:
+              id:
+                type: integer
+                description: Id of the transaction
+                example: 0
+              value:
+                type: integer
+                description: Value of the transaction without the decimal places
+                example: 1000
+              description:
+                type: string
+                description: Description of the transaction
+              reason:
+                type: string
+                description: Optional reason of the transaction
+              timestamp:
+                type: string
+                description: Timestamp of the transaction, defaults to now()
+                example: '2021-09-12 02:43:29'
+              locationName:
+                type: string
+                description: Name of the store/location/vendor of the transaction
+              location:
+                type: object
+                properties:
+                  lat:
+                    type: number
+                    description: Latitude of the location
+                    example: -12.234
+                  lng:
+                    type: number
+                    description: Longitude of the location
+                    example: 14.456
+              categoryId:
+                type: integer
+                description: Id of the category
+              walletId:
+                type: integer
+                description: Id of the wallet
+              tagIds:
+                type: array
+                description: Array of tag ids
+                example: [0, 1, 2]
+    401:
+      $ref: '#components/schemas/401'
+    422:
+      $ref: '#components/schemas/422'
+  security:
+    - JWT: []
+  tags:
+    - Transactions
+delete:
+  description: This action let's the user delete a transaction.
+  parameters:
+    - $ref: '#components/parameters/resource_id'
+    - $ref: '#components/parameters/authorization'
+  responses:
+    200:
+      description: Transaction deleted successfully
+    401:
+      $ref: '#components/schemas/401'
+  security:
+    - JWT: []
+  tags:
+    - Transactions

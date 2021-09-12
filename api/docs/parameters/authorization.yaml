@@ -1,0 +1,7 @@
+name: Authorization
+in: header
+required: true
+description: User's JWT
+schema:
+  type: string
+  example: Bearer {JWT}

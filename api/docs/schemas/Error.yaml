@@ -1,0 +1,22 @@
+type: object
+properties:
+  error:
+    type: object
+    required:
+      - type
+    properties:
+      type:
+        type: string
+        description: Type of the error
+        example: INVALID_VALUE
+      path:
+        type: string
+        description: Name of the parameter that contains an error
+        example: defaultCurrencyCode
+      validValues:
+        type: array
+        description: In case the parameter has a list of valid values, they will be shown here
+        example:
+          - USD
+          - BRL
+          - CAD

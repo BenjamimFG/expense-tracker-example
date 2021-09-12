@@ -1,0 +1,46 @@
+content:
+  application/json:
+    schema:
+      type: object
+      required:
+        - value
+        - walletId
+      properties:
+        value:
+          type: integer
+          description: Value of the transaction without the decimal places. Negative values are expenses, positive values are income.
+          example: 1000
+        description:
+          type: string
+          description: Description of the transaction
+        reason:
+          type: string
+          description: Optional reason of the transaction
+        timestamp:
+          type: string
+          description: Timestamp of the transaction, defaults to now()
+          example: '2021-09-12 02:43:29'
+        locationName:
+          type: string
+          description: Name of the store/location/vendor of the transaction
+        location:
+          type: object
+          properties:
+            lat:
+              type: number
+              description: Latitude of the location
+              example: -12.234
+            lng:
+              type: number
+              description: Longitude of the location
+              example: 14.456
+        categoryId:
+          type: integer
+          description: Id of the category
+        walletId:
+          type: integer
+          description: Id of the wallet
+        tagIds:
+          type: array
+          description: Array of tag ids
+          example: [0, 1, 2]

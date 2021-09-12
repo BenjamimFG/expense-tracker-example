@@ -1,0 +1,20 @@
+get:
+  description: This action let's a user confirm their email using a JWT that is send as a link to their email upon registering.
+  parameters:
+    - name: jwt
+      description: JWT for user confirmation that is generated on registration.
+      in: path
+      required: true
+      schema:
+        type: string
+  responses:
+    301:
+      description: Redirect the user to the login page.
+      headers:
+        Location:
+          description: URI of the login page
+          schema:
+            type: string
+            example: http://localhost:3000/login
+  tags:
+    - Auth

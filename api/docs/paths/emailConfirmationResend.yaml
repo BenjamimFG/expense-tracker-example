@@ -1,0 +1,19 @@
+post:
+  description: This action let's a user have the confirmation email resend to their email, in case it was not sent for some reason.
+  requestBody:
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - userEmail
+          properties:
+            userEmail:
+              type: string
+              description: Email of the account to resend the confirmation to
+              example: john.smith@mail.com
+  responses:
+    202:
+      description: Email resent.
+  tags:
+    - Auth

@@ -1,0 +1,58 @@
+post:
+  description: This action creates a new alert for the user.
+  parameters:
+    - $ref: '#components/parameters/authorization'
+  requestBody:
+    $ref: '#components/requestBodies/AlertBody'
+  responses:
+    201:
+      description: Alert created successfully
+      content:
+        application/json:
+          schema:
+            $ref: '#components/schemas/Alert'
+    401:
+      $ref: '#components/schemas/401'
+    422:
+      $ref: '#components/schemas/422'
+  security:
+    - JWT: []
+  tags:
+    - Alerts
+get:
+  description: This action returns all user's alerts.
+  parameters:
+  - $ref: '#components/parameters/authorization'
+  responses:
+    200:
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: list
+            example:
+              - id: 0
+                alertMethod: '11'
+                alertType: 'FUNDS'
+                alertValue: 50000
+                wallet:
+                  id: 0
+                  name: My Wallet
+                  currencyCode: USD
+                  decimalDigits: 2
+              - id: 1
+                alertMethod: '10'
+                alertType: 'TRANSACTIONS'
+                alertValue: 75000
+                timePeriod: 'MONTH'
+                category:
+                  id: 1
+                  name: Food
+    401:
+      $ref: '#components/schemas/401'
+    422:
+      $ref: '#components/schemas/422'
+  security:
+    - JWT: []
+  tags:
+    - Alerts

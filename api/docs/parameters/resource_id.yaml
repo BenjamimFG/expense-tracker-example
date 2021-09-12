@@ -1,0 +1,7 @@
+name: id
+description: ID of the resource to perform the action on.
+in: path
+required: true
+schema:
+  type: number
+  example: 0

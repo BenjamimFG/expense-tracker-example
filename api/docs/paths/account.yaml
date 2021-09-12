@@ -1,0 +1,28 @@
+put:
+  description: This action let's the user update their information (displayed name, email, phone number, total funds currency code).
+  parameters:
+    - $ref: '#components/parameters/authorization'
+  requestBody:
+    $ref: '#components/requestBodies/UserBodyUpdate'
+  responses:
+    200:
+      description: Updated succesfully
+    401:
+      $ref: '#components/schemas/401'
+  security:
+    - JWT: []
+  tags:
+    - Account
+delete:
+  description: This action marks the user account for deletion requiring email confirmation.
+  parameters:
+    - $ref: '#components/parameters/authorization'
+  responses:
+    202:
+      description: Account marked for deletion
+    401:
+      $ref: '#components/schemas/401'
+  security:
+    - JWT: []
+  tags:
+    - Account

@@ -1,0 +1,8 @@
+Error:
+  $ref: './Error.yaml'
+401:
+  $ref: './401.yaml'
+422:
+  $ref: './422.yaml'
+Alert:
+  $ref: './Alert.yaml'
