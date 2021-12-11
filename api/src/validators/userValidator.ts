@@ -1,7 +1,8 @@
 import Joi from 'joi';
+
 import { validCurrencyCodes } from '../models/CurrencyCode';
 
-const userSchema = Joi.object({
+const userValidator = Joi.object({
   displayName: Joi.string()
     .pattern(new RegExp(/^[a-zA-Z0-9 ]+$/))
     .min(2)
@@ -19,4 +20,4 @@ const userSchema = Joi.object({
     .required()
 });
 
-export default userSchema;
+export default userValidator;

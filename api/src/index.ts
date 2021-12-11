@@ -1,6 +1,7 @@
 import express from 'express';
-import authRouter from './src/routes/authRoutes';
-import databaseService from './src/services/DatabaseService';
+
+import authRouter from './routes/authRoutes';
+import databaseService from './services/DatabaseService';
 
 async function init() {
   const app = express();

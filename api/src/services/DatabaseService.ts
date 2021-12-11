@@ -1,4 +1,5 @@
 import Knex from 'knex';
+
 const knexFile = require('../../knexfile.js');
 let knexConfig: Knex.ConnectionConfig;
 

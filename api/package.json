@@ -5,8 +5,8 @@
   "main": "index.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "ts-node-dev --require dotenv/config index.ts",
-    "watch": "ts-node-dev --respawn --require dotenv/config index.ts",
+    "dev": "ts-node-dev --require dotenv/config src/index.ts",
+    "watch": "ts-node-dev --respawn --require dotenv/config src/index.ts",
     "build": "tsc",
     "migrate:up": "knex migrate:latest",
     "migrate:down": "knex migrate:rollback"
