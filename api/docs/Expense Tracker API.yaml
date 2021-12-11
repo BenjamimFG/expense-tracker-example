@@ -24,18 +24,18 @@ paths:
     $ref: './paths/wallets.yaml'
   /wallets/{id}:
     $ref: './paths/wallet.yaml'
-  /categories:
-    $ref: './paths/categories.yaml'
-  /categories/{id}:
-    $ref: './paths/category.yaml'
   /tags:
     $ref: './paths/tags.yaml'
   /tags/{id}:
     $ref: './paths/tag.yaml'
-  /alerts:
-    $ref: './paths/alerts.yaml'
-  /alerts/{id}:
-    $ref: './paths/alert.yaml'
+  /alerts/transaction:
+    $ref: './paths/transactionAlerts.yaml'
+  /alerts/transaction/{id}:
+    $ref: './paths/transactionAlert.yaml'
+  /alerts/funds:
+    $ref: './paths/fundsAlerts.yaml'
+  /alerts/funds/{id}:
+    $ref: './paths/fundsAlert.yaml'
   /transactions:
     $ref: './paths/transactions.yaml'
   /transactions/{id}:
@@ -60,7 +60,6 @@ tags:
   - name: Account
   - name: Currencies
   - name: Wallets
-  - name: Categories
   - name: Tags
   - name: Alerts
   - name: Transactions

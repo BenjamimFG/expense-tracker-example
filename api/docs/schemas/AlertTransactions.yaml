@@ -2,7 +2,6 @@ type: object
 required:
   - id
   - alertMethod
-  - alertType
   - alertValue
 properties:
   id:
@@ -11,9 +10,6 @@ properties:
   alertMethod:
     type: string
     example: '11'
-  alertType:
-    type: string
-    example: FUNDS
   alertValue:
     type: integer
     example: 50000
@@ -36,7 +32,7 @@ properties:
     type: string
   timePeriodMultiplier:
     type: integer
-  category:
+  tag:
     type: object
     properties:
       id:

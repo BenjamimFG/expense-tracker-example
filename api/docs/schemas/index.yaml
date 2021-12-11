@@ -4,5 +4,5 @@ Error:
   $ref: './401.yaml'
 422:
   $ref: './422.yaml'
-Alert:
-  $ref: './Alert.yaml'
+AlertTransactions:
+  $ref: './AlertTransactions.yaml'

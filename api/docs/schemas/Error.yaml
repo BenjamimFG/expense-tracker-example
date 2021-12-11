@@ -16,6 +16,8 @@ properties:
       validValues:
         type: array
         description: In case the parameter has a list of valid values, they will be shown here
+        items:
+          type: string
         example:
           - USD
           - BRL

@@ -54,7 +54,10 @@ get:
       content:
         application/json:
           schema:
-            type: list
+            type: array
+            items:
+              description: Wallet
+              type: object
             example:
               - id: 0
                 name: Personal Wallet

@@ -25,12 +25,19 @@ CREATE TABLE IF NOT EXISTS wallet (
     currency_code          CHAR(3) REFERENCES currency(code) NOT NULL
 );
 
+CREATE TABLE IF NOT EXISTS tag (
+    id                     BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    tag_name               VARCHAR(100) NOT NULL,
+    user_id                BIGINT REFERENCES app_user(id) ON DELETE CASCADE NOT NULL
+);
+
 CREATE TABLE IF NOT EXISTS user_alert_transactions (
     id                     BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     transactions_value     BIGINT NOT NULL,
     alert_type             BIT(2) NOT NULL,
     time_period_multiplier INT CHECK (time_period_multiplier > 0),
     time_period            VARCHAR(5) CHECK (time_period IN ('WEEK', 'MONTH', 'YEAR', 'DAY')),
+    tag_id                 BIGINT REFERENCES tag(id) ON DELETE CASCADE,
     wallet_id              BIGINT REFERENCES wallet(id) ON DELETE CASCADE,
     user_id                BIGINT REFERENCES app_user(id) ON DELETE CASCADE NOT NULL
 );
@@ -39,35 +46,19 @@ CREATE TABLE IF NOT EXISTS user_alert_funds (
     id                     BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     funds_value            BIGINT NOT NULL,
     alert_type             BIT(2) NOT NULL,
-    time_period_multiplier INT CHECK (time_period_multiplier > 0),
-    time_period            VARCHAR(5) CHECK (time_period IN ('WEEK', 'MONTH', 'YEAR', 'DAY')),
     wallet_id              BIGINT REFERENCES wallet(id) ON DELETE CASCADE,
-    user_id                BIGINT REFERENCES app_user(id) ON DELETE CASCADE NOT NULL
-);
-
-CREATE TABLE IF NOT EXISTS category (
-    id                     BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    cat_name               VARCHAR(100) NOT NULL,
-    description            TEXT,
-    user_id                BIGINT REFERENCES app_user(id) ON DELETE CASCADE NOT NULL
-);
-
-CREATE TABLE IF NOT EXISTS tag (
-    id                     BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    tag_name               VARCHAR(100) NOT NULL,
-    user_id                BIGINT REFERENCES app_user(id) ON DELETE CASCADE NOT NULL
+    user_id                BIGINT REFERENCES app_user(id) ON DELETE CASCADE NOT NULL,
+    recurring              BOOLEAN NOT NULL DEFAULT FALSE
 );
 
 CREATE TABLE IF NOT EXISTS app_transaction (
     id                     BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     transaction_value      BIGINT NOT NULL,
     description            TEXT,
-    reason                 TEXT,
-    transaction_timestamp  TIMESTAMP,
+    transaction_timestamp  TIMESTAMP NOT NULL DEFAULT NOW(),
     location_name          VARCHAR(100),
     location_lat_lng       POINT,
     user_id                BIGINT REFERENCES app_user(id) ON DELETE CASCADE NOT NULL,
-    category_id            BIGINT REFERENCES category(id) ON DELETE SET NULL,
     wallet_id              BIGINT REFERENCES wallet(id) ON DELETE CASCADE NOT NULL
 );
 

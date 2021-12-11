@@ -39,7 +39,10 @@ get:
       content:
         application/json:
           schema:
-            type: list
+            type: array
+            items:
+              description: Tag
+              type: object
             example:
               - id: 0
                 name: Received

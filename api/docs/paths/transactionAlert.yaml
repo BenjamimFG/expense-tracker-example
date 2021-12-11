@@ -9,7 +9,7 @@ get:
       content:
         application/json:
           schema:
-            $ref: '#components/schemas/Alert'
+            $ref: '#components/schemas/AlertTransactions'
     401:
       $ref: '#components/schemas/401'
   security:
@@ -22,14 +22,14 @@ put:
     - $ref: '#components/parameters/resource_id'
     - $ref: '#components/parameters/authorization'
   requestBody:
-    $ref: '#components/requestBodies/AlertBodyUpdate'
+    $ref: '#components/requestBodies/AlertTransactionBodyUpdate'
   responses:
     200:
       description: Alert updated successfully
       content:
         application/json:
           schema:
-            $ref: '#components/schemas/Alert'
+            $ref: '#components/schemas/AlertTransactions'
     401:
       $ref: '#components/schemas/401'
     422:
@@ -45,7 +45,7 @@ delete:
     - $ref: '#components/parameters/authorization'
   responses:
     200:
-      description: Tag deleted successfully
+      description: Alert deleted successfully
     401:
       $ref: '#components/schemas/401'
   security:

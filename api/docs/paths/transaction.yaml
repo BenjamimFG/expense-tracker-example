@@ -48,15 +48,15 @@ get:
                     type: number
                     description: Longitude of the location
                     example: 14.456
-              categoryId:
-                type: integer
-                description: Id of the category
               walletId:
                 type: integer
                 description: Id of the wallet
               tagIds:
                 type: array
                 description: Array of tag ids
+                items:
+                  description: Tag id
+                  type: integer
                 example: [0, 1, 2]
     401:
       $ref: '#components/schemas/401'
@@ -116,15 +116,15 @@ put:
                     type: number
                     description: Longitude of the location
                     example: 14.456
-              categoryId:
-                type: integer
-                description: Id of the category
               walletId:
                 type: integer
                 description: Id of the wallet
               tagIds:
                 type: array
                 description: Array of tag ids
+                items:
+                  description: Tag Id
+                  type: integer
                 example: [0, 1, 2]
     401:
       $ref: '#components/schemas/401'

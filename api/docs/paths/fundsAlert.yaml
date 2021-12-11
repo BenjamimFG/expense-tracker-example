@@ -1,0 +1,54 @@
+get:
+  description: This action returns a single user's funds alert.
+  parameters:
+    - $ref: '#components/parameters/resource_id'
+    - $ref: '#components/parameters/authorization'
+  responses:
+    200:
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: '#components/schemas/AlertFunds'
+    401:
+      $ref: '#components/schemas/401'
+  security:
+    - JWT: []
+  tags:
+    - Alerts
+put:
+  description: This actions let's the user update a funds alert.
+  parameters:
+    - $ref: '#components/parameters/resource_id'
+    - $ref: '#components/parameters/authorization'
+  requestBody:
+    $ref: '#components/requestBodies/AlertFundsBodyUpdate'
+  responses:
+    200:
+      description: Alert updated successfully
+      content:
+        application/json:
+          schema:
+            $ref: '#components/schemas/AlertFunds'
+    401:
+      $ref: '#components/schemas/401'
+    422:
+      $ref: '#components/schemas/422'
+  security:
+    - JWT: []
+  tags:
+    - Alerts
+delete:
+  description: This action let's the user delete a funds alert.
+  parameters:
+    - $ref: '#components/parameters/resource_id'
+    - $ref: '#components/parameters/authorization'
+  responses:
+    200:
+      description: Alert deleted successfully
+    401:
+      $ref: '#components/schemas/401'
+  security:
+    - JWT: []
+  tags:
+    - Alerts

@@ -4,7 +4,6 @@ content:
       type: object
       required:
         - alertMethod
-        - alertType
         - alertValue
       properties:
         alertMethod:
@@ -12,14 +11,10 @@ content:
           example: '11'
           maxLength: 2
           description: Binary representation of the method to alert the user where 10 means email and 01 means phone, any XOR between the values is accepted.
-        alertType:
-          type: string
-          example: FUNDS
-          description: Type of alert. Possible values are "FUNDS" and "TRANSACTIONS".
         alertValue:
           type: integer
           example: 100000
-          description: If the alert type is FUNDS the alert will be emitted when funds reach alertValue or lower, if the alert type is TRANSACTIONS the alert will be emitted when transactions values reach alertValue or higher.
+          description: The alert will be emitted when transactions values reach alertValue or higher.
         walletId:
           type: integer
           example: 0
@@ -27,13 +22,13 @@ content:
         timePeriod:
           type: string
           example: 'YEAR'
-          description: This property is only used if alertType is TRANSACTIONS. Only transactions in the specified period will be counted towards the value of alertValue. Possible values are "DAY", "WEEK", "MONTH", "YEAR".
+          description: Only transactions in the specified period will be counted towards the value of alertValue. Possible values are "DAY", "WEEK", "MONTH", "YEAR".
         timePeriodMultiplier:
           type: integer
           example: 2
           minValue: 1
           description: This property multiplies the time period. For example, if timePeriod is WEEK and this property is 2, transactions will be counted for 2 weeks.
-        categoryId:
+        tagId:
           type: integer
           example: 0
-          description: This property is only used if alertType is TRANSACTIONS. Only transactions from this category will be counted for the alert. If this property is not set, all transactions will be counted.
+          description: Only transactions with this tag will be counted for the alert. If this property is not set, all transactions will be counted.

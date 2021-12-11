@@ -1,0 +1,25 @@
+content:
+  application/json:
+    schema:
+      type: object
+      required:
+        - alertMethod
+        - fundsValue
+      properties:
+        alertMethod:
+          type: string
+          example: '11'
+          maxLength: 2
+          description: Binary representation of the method to alert the user where 10 means email and 01 means phone, any XOR between the values is accepted.
+        fundsValue:
+          type: integer
+          example: 100000
+          description: The alert will be emitted when funds values reach fundsValue or higher.
+        walletId:
+          type: integer
+          example: 0
+          description: If this property is set, only the funds in this wallet will be counted for the alert. If this property is not set all wallet's funds will be counted.
+        recurring:
+          type: boolean
+          example: true
+          description: If false the alert will be deleted once it is triggered once. If true the alert will remain and can be triggered multiple times

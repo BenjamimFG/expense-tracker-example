@@ -1,0 +1,54 @@
+post:
+  description: This action creates a new funds alert for the user.
+  parameters:
+    - $ref: '#components/parameters/authorization'
+  requestBody:
+    $ref: '#components/requestBodies/AlertFundsBody'
+  responses:
+    201:
+      description: Alert created successfully
+      content:
+        application/json:
+          schema:
+            $ref: '#components/schemas/AlertFunds'
+    401:
+      $ref: '#components/schemas/401'
+    422:
+      $ref: '#components/schemas/422'
+  security:
+    - JWT: []
+  tags:
+    - Alerts
+get:
+  description: This action returns all user's funds alerts.
+  parameters:
+  - $ref: '#components/parameters/authorization'
+  responses:
+    200:
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: list
+            example:
+              - id: 0
+                alertMethod: '11'
+                fundsValue: 50000
+                recurring: false
+                wallet:
+                  id: 0
+                  name: My Wallet
+                  currencyCode: USD
+                  decimalDigits: 2
+              - id: 1
+                alertMethod: '10'
+                fundsValue: 75000
+                recurring: true
+    401:
+      $ref: '#components/schemas/401'
+    422:
+      $ref: '#components/schemas/422'
+  security:
+    - JWT: []
+  tags:
+    - Alerts

@@ -10,6 +10,9 @@ get:
           schema:
             type: array
             description: Array of available currency codes
+            items:
+              description: Currency code
+              type: string
             example:
               - BRL
               - USD

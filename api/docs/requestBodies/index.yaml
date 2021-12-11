@@ -6,13 +6,11 @@ WalletBody:
   $ref: './WalletBody.yaml'
 WalletBodyUpdate:
   $ref: './WalletBodyUpdate.yaml'
-CategoryBody:
-  $ref: './CategoryBody.yaml'
 TagBody:
   $ref: './TagBody.yaml'
-AlertBody:
-  $ref: './AlertBody.yaml'
-AlertBodyUpdate:
-  $ref: './AlertBodyUpdate.yaml'
+AlertTransactionBody:
+  $ref: './AlertTransactionBody.yaml'
+AlertTransactionBodyUpdate:
+  $ref: './AlertTransactionBodyUpdate.yaml'
 TransactionBody:
   $ref: './TransactionBody.yaml'

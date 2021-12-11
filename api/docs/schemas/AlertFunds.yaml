@@ -1,0 +1,33 @@
+type: object
+required:
+  - id
+  - alertMethod
+  - fundsValue
+properties:
+  id:
+    type: integer
+    example: 0
+  alertMethod:
+    type: string
+    example: '11'
+  fundsValue:
+    type: integer
+    example: 50000
+  wallet:
+    type: object
+    properties:
+      id:
+        type: integer
+        example: 0
+      name:
+        type: string
+        example: My Wallet
+      currencyCode:
+        type: string
+        example: USD
+      decimalDigits:
+        type: integer
+        example: 2
+  recurring:
+    type: boolean
+    example: true
