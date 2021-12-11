@@ -11,11 +11,10 @@ exports.down = function (knex) {
     DROP TABLE transaction_tags;
     DROP TABLE app_transaction;
     DROP TABLE tag;
-    DROP TABLE category;
     DROP TABLE user_alert_funds;
     DROP TABLE user_alert_transactions;
     DROP TABLE wallet;
-    DROP TABLE currency;
     DROP TABLE app_user;
+    DROP TABLE currency;
   `);
 };

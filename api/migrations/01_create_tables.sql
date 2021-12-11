@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS tag (
 CREATE TABLE IF NOT EXISTS user_alert_transactions (
     id                     BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     transactions_value     BIGINT NOT NULL,
-    alert_type             BIT(2) NOT NULL,
+    alert_method           BIT(2) NOT NULL,
     time_period_multiplier INT CHECK (time_period_multiplier > 0),
     time_period            VARCHAR(5) CHECK (time_period IN ('WEEK', 'MONTH', 'YEAR', 'DAY')),
     tag_id                 BIGINT REFERENCES tag(id) ON DELETE CASCADE,
@@ -45,7 +45,7 @@ CREATE TABLE IF NOT EXISTS user_alert_transactions (
 CREATE TABLE IF NOT EXISTS user_alert_funds (
     id                     BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     funds_value            BIGINT NOT NULL,
-    alert_type             BIT(2) NOT NULL,
+    alert_method           BIT(2) NOT NULL,
     wallet_id              BIGINT REFERENCES wallet(id) ON DELETE CASCADE,
     user_id                BIGINT REFERENCES app_user(id) ON DELETE CASCADE NOT NULL,
     recurring              BOOLEAN NOT NULL DEFAULT FALSE
